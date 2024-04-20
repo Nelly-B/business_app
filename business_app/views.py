@@ -18,8 +18,7 @@ from business_app.serializers import (
     StatusSerializer,
     OrderSerializer,
     OrderItemSerializer,
-    UserSerializer,
-    InstockSerializer
+    InstockSerializer,
 )
 
 # Create your views here.
@@ -61,13 +60,4 @@ class  OrderItemViewSet(viewsets.ModelViewSet):
 class StatusViewSet(viewsets.ModelViewSet):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
-
-class UserCreateViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    # def post(self, request):
-    #     serializer = UserSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+   

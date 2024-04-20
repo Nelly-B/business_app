@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 from PIL import Image
+from user_app.models import CustomUser
 
 # Create your models here.
 class Customer(models.Model):
@@ -19,7 +20,7 @@ class Customer(models.Model):
 
 class Status(models.Model):
     name = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -32,7 +33,7 @@ class Status(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=250, null=True)
     image = models.ImageField(upload_to='media', default='jpg', null=True)
-    quantity = models.IntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=0)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +46,7 @@ class Product(models.Model):
 class Unit_of_measurment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=225)
-    unit = models.IntegerField()
+    unit = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
     class  Meta:
@@ -55,7 +56,7 @@ class Unit_of_measurment(models.Model):
         return f"{self.product} {self.price}"
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     unit_of_measurement = models.ForeignKey(Unit_of_measurment, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
@@ -79,4 +80,4 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity}"
-
+    
