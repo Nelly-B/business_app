@@ -7,6 +7,7 @@ from business_app.views import (
     CustomerViewset,
     OrderViewSet,
     StatusViewSet,
+    Unit_of_measurement_viewSet,
 )
 router = DefaultRouter()
 router.register(r'customer', CustomerViewset, basename='customer'),
@@ -15,6 +16,7 @@ router.register(r'order', OrderViewSet, basename='order'),
 router.register(r'orderItem', OrderItemViewSet, basename='orderItem'),
 router.register(r'status', StatusViewSet, basename='status'),
 router.register(r'register', UserCreateViewSet, basename='user')
+router.register(r'unitOfMeasurement', Unit_of_measurement_viewSet, basename='umo')
 # router.register(r'login', user_login, basename='user_login')
 
 urlpatterns = []

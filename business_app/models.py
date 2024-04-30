@@ -1,6 +1,5 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User
 from PIL import Image
 from user_app.models import CustomUser
 
@@ -11,6 +10,7 @@ class Customer(models.Model):
     phone_number = PhoneNumberField(max_length = 50, unique=True, null=False)
     address = models.CharField(max_length=225)
     email = models.EmailField(unique=True)
+    username = models.CharField(max_length=20, null=False)
 
     class Meta:
         db_table = 'customers'
@@ -19,7 +19,7 @@ class Customer(models.Model):
         return f"{self.first_name} {self.last_name} {self.email}"
 
 class Status(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -27,7 +27,7 @@ class Status(models.Model):
         db_table = 'status'
 
     def __str__(self):
-        return f"{self.user}"
+        return f"{self.name}"
 
 
 class Product(models.Model):

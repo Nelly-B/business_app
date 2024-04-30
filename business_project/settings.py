@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qg3k84gs43cvmxdo!m)fq0!)=!4rgm^)!^lzlz%k6dsi%&d08h'
+SECRET_KEY = 'APP_SECRET'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -155,3 +155,9 @@ SPECTACULAR_SETTINGS = {
     'REDOC_DIST': 'SIDECAR',
     # OTHER SETTINGS
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_HOST_USER = 'alapanelly@gmail.com'
+EMAIL_HOST_PASSWORD = 'B1F6116C1DA1BE3F261B0B9CB8923BD0EDE8'
+EMAIL_PORT = '2525'
